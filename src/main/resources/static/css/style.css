@@ -1,0 +1,29 @@
+
+@import url(reboot.css);
+/* файл сброса */
+
+@import url(sign.css);
+/* файл для страницы регистрации и входа */
+/* в основном будет использоваться для форм */
+
+@import url(main.css);
+/* файл для главной страницы */
+
+body{
+  font-family: "Unbounded", sans-serif;
+}
+.main-btn{
+  display: block;
+  cursor: pointer;
+  background-color: #519EC7;
+  color: #fff;
+  border-radius: 5px;
+  height: 40px;
+  width: 430px;
+  margin: 10px 0;
+}
+.main-btn:hover{
+  background-color: #519EC7;
+  transition: all 0.3s;
+  box-shadow: 1px -1px 20px 1px #519ec76b;
+}
