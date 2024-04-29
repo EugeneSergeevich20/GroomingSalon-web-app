@@ -9,21 +9,55 @@
 @import url(main.css);
 /* файл для главной страницы */
 
+@import url(account.css);
+/* личный кабинет */
 body{
   font-family: "Unbounded", sans-serif;
 }
+.container{
+  padding: 0 100px;
+}
+.header { 
+  padding: 20px 0; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+.header__nav ul { display: flex; flex-direction: row;}
+.header__nav ul li { margin: 0 10px; }
+.header .main-btn { 
+  background-color: #E49CAF; 
+  width: 250px; 
+  font-size: 15px; 
+}
+a{
+  color: #fff
+}
 .main-btn{
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   cursor: pointer;
   background-color: #519EC7;
   color: #fff;
   border-radius: 5px;
   height: 40px;
   width: 430px;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 .main-btn:hover{
   background-color: #519EC7;
   transition: all 0.3s;
   box-shadow: 1px -1px 20px 1px #519ec76b;
+}
+.link{
+  font-weight: 500; 
+  text-decoration: none; 
+  font-size: 15px;
+  color: #519EC7;
+ }
+.link:hover{
+ color: #E49CAF;
 }

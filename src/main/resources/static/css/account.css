@@ -1,0 +1,19 @@
+.account { background: url(../img/bgNull.jpg) center center/cover no-repeat; height: 670px; }
+
+.account__info { display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 100px; background-color: #ffffffba; height: 450px; border-radius: 20px; }
+
+.account__info .user-data { width: 50%; }
+
+.account__info .user-data__item { text-align: left; margin: 20px; color: #519EC7; font-weight: 600; font-size: 17px; }
+
+.account__info span { cursor: pointer; text-decoration: none; }
+
+.account__info span:hover { text-decoration: underline; }
+
+.account__info .main-btn { margin: 20px 0; }
+
+.overlay { display: none; position: fixed; width: 100%; height: 100%; top: 0; background-color: #0000004a; }
+
+.modal { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 600px; }
+
+.modal__close { position: absolute; top: 0; right: -30px; font-size: 45px; line-height: 22px; color: #519EC7; cursor: pointer; }
