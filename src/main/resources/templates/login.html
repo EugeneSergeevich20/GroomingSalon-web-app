@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>страница входа</title>
 </head>
 <body>
     <div class="registration">
-        <form id="form-registration" class="block-form" action="#">
+        <form id="form-registration" class="block-form" th:method="POST" th:action="@{/process-login}">
             <div class="block-form__title">Войти</div>
-            <div class="block-input block-input_long">
-                <label for="input" class="block-input__title">Ваш логин:</label>
-                <input type="text" name="login" id="login" class="block-input__text">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <div th:if="${param.error}">
+                Неправильный логин или пароль
             </div>
             <div class="block-input block-input_long">
-                <label for="input" class="block-input__title">Пароль:</label>
+                <label for="login" class="block-input__title">Ваш логин:</label>
+                <input type="text" name="username" id="login" class="block-input__text">
+            </div>
+            <div class="block-input block-input_long">
+                <label for="pass" class="block-input__title">Пароль:</label>
                 <input type="password" name="password" id="pass" class="block-input__text">
             </div>
             <div id="errorBlock"></div>
@@ -24,7 +28,7 @@
         </form>
         <div class="anotherPage">Если у вас нет аккаунта ➔ 
             <span>
-                <a class="anotherPage__link" href="registration.html">Зарегистрироваться</a>
+                <a class="anotherPage__link" th:href="@{/auth/register}">Зарегистрироваться</a>
             </span> 
         </div>
     </div>  
