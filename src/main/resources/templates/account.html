@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link
             href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900"
             rel="stylesheet" />
-        <link rel="stylesheet" href="../../../../../../OneDrive/Desktop/grooming/css/style.css">
+        <link rel="stylesheet" href="/css/style.css">
         <title>личный кабинет</title>
     </head>
     <body>
         <section class="account container">
             <header class="header">
                 <div class="header__logo">
-                    <a class="link" href="../../../../../../OneDrive/Desktop/grooming/index.html">
-                        <img src="../../../../../../OneDrive/Desktop/grooming/img/logo.svg" alt="logo">
+                    <a class="link" th:href="@{/home}">
+                        <img src="/img/logo.svg" alt="logo">
                     </a>
                 </div>
                 <div class="header__title">
-                    <img src="../../../../../../OneDrive/Desktop/grooming/img/imgAcc.svg" alt="imgAcc">
+                    <img src="/img/imgAcc.svg" alt="imgAcc">
                 </div>
                 <div class="main-btn">
                     записаться на услугу
@@ -27,19 +27,19 @@
             <div class="account__info">
                 <div class="user-data">
                     <div class="user-data__item user-data__login">
-                        Ваш логин: <span>iririr</span>
+                        Ваш логин: <span th:text="*{user.username}">iririr</span>
                     </div>
                     <div class="user-data__item user-data__name">
-                        Ваше имя: <span>Ирина</span>
+                        Ваше имя: <span th:text="*{user.name}">Ирина</span>
                     </div>
                     <div class="user-data__item user-data__surname">
-                        Ваша фамилия: <span>Алешкова</span>
+                        Ваша фамилия: <span th:text="*{user.surname}">Алешкова</span>
                     </div>
                     <div class="user-data__item user-data__email">
-                        Ваш email: <span>sfhifsfjfh@gmail.com</span>
+                        Ваш email: <span th:text="*{user.email}">sfhifsfjfh@gmail.com</span>
                     </div>
                     <div class="user-data__item user-data__phone">
-                        Ваш контактный номер: <span>43636</span>
+                        Ваш контактный номер: <span th:text="*{user.phoneNumber}">43636</span>
                     </div>
                 </div>
                 <div class="btns">
@@ -57,38 +57,41 @@
         <div class="overlay">
             <div class="modal" id="editDataUser">
                 <div class="modal__close">&times;</div>
-                <form id="form-registration" class="block-form" action="#">
-                    <div class="block-input block-input_long">
-                        <label for="input" class="block-input__title">Логин:</label>
-                        <input required type="text" name="login" id="login" class="block-input__text">
-                    </div>
+                <form id="form-registration" class="block-form" th:method="POST" th:action="@{/user/edit-user/process}">
+
                     <div class="block-item">
                         <div class="block-input">
                             <label for="input" class="block-input__title">Имя:</label>
-                            <input required type="text" name="name" id="name" class="block-input__text">
+                            <input th:field="*{user.name}" required type="text" name="name" id="name" class="block-input__text">
                         </div>
                         <div class="block-input">
                             <label for="input" class="block-input__title">Фамилия:</label>
-                            <input required  type="text" name="surname" id="surname" class="block-input__text">
+                            <input th:field="*{user.surname}" required  type="text" name="surname" id="surname" class="block-input__text">
                         </div>
                     </div>
                     <div class="block-item">
                         <div class="block-input">
                             <label for="input" class="block-input__title">Номер:</label>
-                            <input required type="text" name="phone" id="phone" placeholder="+7 (999) 999-99-99" class="block-input__text">
+                            <input th:field="*{user.phoneNumber}" required type="text" name="phone" id="phone" placeholder="+7 (999) 999-99-99" class="block-input__text">
                         </div>
                         <div class="block-input">
                             <label for="input" class="block-input__title">Email:</label>
-                            <input required type="text" name="email" id="email" placeholder="pochta@example.com" class="block-input__text">
+                            <input th:field="*{user.email}" required type="text" name="email" id="email" placeholder="pochta@example.com" class="block-input__text">
                         </div>
                     </div>
                     <input type="submit" value="изменить данные" class="main-btn">
                 </form>
             </div>
         </div>
-        <script src="../../../../../../OneDrive/Desktop/grooming/js/jquery-3.7.1.js"></script>
+        <script src="/js/jquery-3.7.1.js"></script>
+        <!-- подключение библиотеки jquery -->
+        <script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
         <script>
             $(document).ready(function(){
+                $(document).ready(function() {
+                    $("#phone").mask("+7 (999) 999-99-99");
+                });
+
                 $('#editDataUserBtn').on('click', function() {
                     $('.overlay').fadeIn('slow');
                 });
