@@ -47,6 +47,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User userOld, User userUpdate) {
 
+        userOld.setName(userUpdate.getName());
+        userOld.setSurname(userUpdate.getSurname());
+        userOld.setEmail(userUpdate.getEmail());
+        userOld.setPhoneNumber(userUpdate.getPhoneNumber());
+
+        userRepository.save(userOld);
     }
 
     @Override

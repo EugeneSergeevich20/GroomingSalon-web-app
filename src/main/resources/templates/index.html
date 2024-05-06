@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
-    <link rel="stylesheet" href="../../../../../../OneDrive/Desktop/grooming/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>главная страница</title>
 </head>
 <body>
@@ -12,13 +12,14 @@
         <header class="header">
             <div class="header__logo">
                 <a class="link" href="index.html">
-                    <img src="../../../../../../OneDrive/Desktop/grooming/img/logo.svg" alt="logo">
+                    <img src="/img/logo.svg" alt="logo">
                 </a>
             </div>
             <nav class="header__nav">
                 <ul>
-                    <li><a class="link" href="">наши услуги</a></li>
-                    <li><a class="link" href="account.html">личный кабинет</a></li>
+                    <li><a class="link" >наши услуги</a></li>
+                    <li><a th:if="${user != null}" class="link" th:href="@{/user/account/{login}(login = ${user.getUsername()})}">личный кабинет</a></li>
+                    <li><a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a></li>
                 </ul>
             </nav>
             <div class="main-btn">
