@@ -1,63 +1,477 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/style.css">
-    <title>главная страница</title>
-</head>
-<body>
-    <section class="promo container">
-        <header class="header">
-            <div class="header__logo">
-                <a class="link" href="index.html">
-                    <img src="/img/logo.svg" alt="logo">
-                </a>
-            </div>
-            <nav class="header__nav">
-                <ul>
-                    <li><a class="link" >наши услуги</a></li>
-                    <li><a th:if="${user != null}" class="link" th:href="@{/user/account/{login}(login = ${user.getUsername()})}">личный кабинет</a></li>
-                    <li><a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a></li>
-                </ul>
-            </nav>
-            <div class="main-btn">
-                записаться на услугу
-            </div>
-        </header>
-        <div class="promo__title">
-            Профессиональный груминг салон <br> для собачек и кошечек
-        </div>
-        <div class="promo__subtitle">
-            Дарим вашему питомцу красоту и заботу каждый день
-        </div>
-        <a class="learn-btn main-btn" href="#services">ознакомиться с нашими услугами</a>
-        <div class="arrow-animate">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </section>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/reboot.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/modal.css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800"
+            rel="stylesheet" />
+        <title>главная страница</title>
+        <style>
+        @font-face {
+        font-family: MyFont;
+        src: url("fonts/Soyuz Grotesk Bold.otf");
+        }
+    </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <section class="promo container">
+                <header class="header">
+                    <div class="header__logo logo">
+                        <a href="index.html">дай лапу</a>
+                    </div>
+                    <nav class="nav">
+                        <ul class="nav__list">
+                            <li><a href="#about">о студии</a></li>
+                            <li><a href="#services">услуги</a></li>
+                            <li><a href="#reviews">отзывы</a></li>
+                            <li><a href="account.html">личный кабинет</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <div class="promo__title">
+                    профессиональный <br>
+                    груминг для собак <br>
+                    и кошек в Самаре
+                </div>
+                <div class="promo__subtitle">
+                    Комплексный и бережный уход за вашими питомцами: <br>
+                    стрижка, мытье, SPA-уход, креативный груминг
+                </div>
+                <div class="btn-record">
+                    <a href="#record">записаться &#129122;</a>
+                </div>
+                <img class="circle" src="img/circle/BlueCircle.png"
+                    alt="BlueCircle">
+                <img class="circle-photo" src="img/circle/promoCirclePhoto.png"
+                    alt="promoCirclePhoto">
+            </section>
+            <section id="about" class="about container">
+                <div class="about__img">
+                    <img src="img/aboutSquarePhoto.png" alt="aboutSquarePhoto">
+                </div>
+                <div class="about__text">
+                    <div class="about__title">нам доверяют <br> самое
+                        дорогое</div>
+                    <p>
+                        Мы преданно заботимся о вашем любимце с 2021 года. В
+                        нашей <br>
+                        студии груминга мы не просто стрижем и ухаживаем за
+                        животными, <br>
+                        мы создаем для них комфортное и радостное пребывание.
+                    </p>
+                    <p>
+                        Нам безумно важно психологическое и физическое здоровье
+                        <br>
+                        наших любимых хвостиков, поэтому мы все делаем
+                        аккуратно, <br>
+                        с нежностью, с заботой и любовью
+                    </p>
+                </div>
+            </section>
+            <section class="advantages container">
+                <div class="advantages__title">
+                    наша любовь и забота — <br> залог вашего комфорта
+                </div>
+                <div class="advantages__list">
+                    <ul>
+                        <li>услуги для кошек и собак</li>
+                        <li>гибкий график приема</li>
+                        <li>безопасные и проверенные средства для ухода</li>
+                        <li>индивидуальный уход, учитывая особенности</li>
+                        <li>дружелюбная и уютная атмосфера в нашей студии</li>
+                        <li>большой опыт работы с различными породами
+                            животных</li>
+                    </ul>
+                </div>
 
-    <section id="services" class="services container">
-        <div class="services__title">
-            Услуги нашего груминг-салона
+                <img class="circle" src="img/circle/VioletCircle.png"
+                    alt="VioletCircle">
+                <img class="circle-photo"
+                    src="img/circle/advantagesCirclePhoto1.png"
+                    alt="advantagesCirclePhoto1">
+
+                <img class="circle circle2" src="img/circle/PinkCircle.png"
+                    alt="PinkCircle">
+                <img class="circle-photo2"
+                    src="img/circle/advantagesCirclePhoto2.png"
+                    alt="advantagesCirclePhoto2">
+
+            </section>
+            <section id="services" class="services container">
+                <div class="services__title">наши услуги</div>
+                <div class="services__blocks">
+                    <div data-modal="trimming" class="services__item service1">
+                        <div class="services__name">
+                            Тримминг
+                        </div>
+                    </div>
+                    <div data-modal="washing" class="services__item service3">
+                        <div class="services__name">
+                            Мойка + сушка
+                        </div>
+                    </div>
+                    <div data-modal="molting" class="services__item service4">
+                        <div class="services__name">
+                            Экспресс линька
+                        </div>
+                    </div>
+                    <div data-modal="grooming" class="services__item service5">
+                        <div class="services__name">
+                            Груминг
+                        </div>
+                    </div>
+                    <div data-modal="hygiene" class="services__item service6">
+                        <div class="services__name">
+                            Гигиена
+                        </div>
+                    </div>
+                    <div data-modal="cats" class="services__item service7">
+                        <div class="services__name">
+                            Комплекс для кошек
+                        </div>
+                    </div>
+                    <div data-modal="care" class="services__item service8">
+                        <div class="services__name">
+                            Уход
+                        </div>
+                    </div>
+                    <div data-modal="exhibition"
+                        class="services__item service2">
+                        <div class="services__name">
+                            Подготовка к выставке
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="reviews" class="reviews container">
+                <div class="reviews__title">фото наших любимых клиентов</div>
+
+                <img class="circle" src="img/circle/VioletCircle.png"
+                    alt="VioletCircle">
+                <img class="circle-photo" src="img/reviews/reviewsImg1.png"
+                    alt="reviewsImg1">
+
+                <img class="circle circle1" src="img/circle/PinkCircle.png"
+                    alt="PinkCircle">
+                <img class="circle-photo1" src="img/reviews/reviewsImg2.png"
+                    alt="reviewsImg2">
+
+                <img class="circle circle2" src="img/circle/BlueCircle.png"
+                    alt="BlueCircle">
+                <img class="circle-photo2" src="img/reviews/reviewsImg3.png"
+                    alt="reviewsImg3">
+
+                <img class="circle circle3" src="img/circle/PinkCircle.png"
+                    alt="PinkCircle">
+                <img class="circle-photo3" src="img/reviews/reviewsImg4.png"
+                    alt="reviewsImg4">
+
+                <img class="circle circle4" src="img/circle/PinkCircle.png"
+                    alt="PinkCircle">
+                <img class="circle-photo4" src="img/reviews/reviewsImg5.png"
+                    alt="reviewsImg5">
+
+                <img class="circle circle5" src="img/circle/PinkCircle.png"
+                    alt="PinkCircle">
+                <img class="circle-photo5" src="img/reviews/reviewsImg6.png"
+                    alt="reviewsImg6">
+
+                <img class="circle circle6" src="img/circle/VioletCircle.png"
+                    alt="VioletCircle">
+                <img class="circle-photo6" src="img/reviews/reviewsImg7.png"
+                    alt="reviewsImg7">
+
+            </section>
+            <section id="record" class="record container">
+                <div class="record__text">
+                    <div class="record__title">
+                        запишитесь к нам на услугу!
+                    </div>
+                    <div class="record__subtitle">
+                        для записи войдите в <a href="login.html">личный
+                            кабинет</a>
+                        или <a href="registration.html">зарегистрируйтесь</a>
+                        <br> и заполните форму
+                    </div>
+                    <div class="record__info">
+                        <p>
+                            <address>Самара, ул.Ново-Садовая, 101 </address>
+                        </p>
+                        <p>
+                            10:00 - 20:00 без выходных
+                        </p>
+                    </div>
+                </div>
+                <div class="record__form">
+                    <form class="record-form" action="#">
+                        <div class="record-form__row">
+                            <div class="record-form__block">
+                                <label for="category">Выберете категорию:</label>
+                                <select name="category" id="category">
+                                    <option value>Стрижка</option>
+                                    <option value>Lorem, ipsum.</option>
+                                    <option value>Lorem, ipsum.</option>
+                                </select>
+                            </div>
+                            <div class="record-form__block">
+                                <label for="service">Выберете услугу:</label>
+                                <select name="service" id="service">
+                                    <option value>Стрижка</option>
+                                    <option value>Lorem, ipsum.</option>
+                                    <option value>Lorem, ipsum.</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="record-form__row">
+                            <div class="record-form__block">
+                                <label for="date">Выберете дату:</label>
+                                <input type="date" name="date" id="date" required>
+                            </div>
+                            <div class="record-form__block">
+                                <label for="time">Выберете время:</label>
+                                <input type="time" name="time" id="time" required>
+                            </div>
+                        </div>
+
+                        <input class="btn-record" type="submit"
+                            value="записаться">
+                    </form>
+                </div>
+            </section>
+            <footer class="footer container">
+                <div class="footer__link">
+                    <div class="logo">
+                        <a href="index.html">дай лапу</a>
+                    </div>
+                    <nav class="nav">
+                        <ul class="nav__list">
+                            <li><a href="#about">о студии</a></li>
+                            <li><a href="#services">услуги</a></li>
+                            <li><a href="#reviews">отзывы</a></li>
+                            <li><a href="account.html">личный кабинет</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer__info">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="https://vk.com/iriveses">Разработка сайта</a>
+                </div>
+            </footer>
+
+            <div class="overlay">
+                <div class="modal" id="trimming">
+                    <div class="modal__close">&times;</div>
+                    <p class="aboutCategory">
+                        Тримминг — это процедура прореживания шерсти,
+                        механическое удаление отмерших
+                        волосков у собак жесткошерстых пород. Тримминг собак
+                        позволяет сохранять шерсть
+                        яркой и блестящей, поддерживать правильную структуру
+                        волоса и аккуратный вид питомца,
+                        стимулировать рост новой шерсти.
+                    </p>
+                    <ul class="category-list">
+                        <li>Тримминг мелкие породы <span>3000
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Тримминг средние породы <span>4000
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Тримминг крупные породы <span>5000
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Тримминг огромные породы <span>6000
+                                &#8381;</span></li>
+                        <hr>
+                    </ul>
+                </div>
+                <div class="modal" id="washing">
+                    <div class="modal__close">&times;</div>
+                    <p class="aboutCategory">
+                        Мойка и сушка собак - это комплексная процедура,
+                        направленная на поддержание гигиены
+                        и внешнего вида Вашего питомца.
+                    </p>
+                    <ul class="category-list">
+                        <li>Мойка + сушка мелкие породы <span>1500
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Мойка + сушка средние породы <span>2000
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Мойка + сушка крупные породы <span>2500
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Мойка + сушка огромные породы <span>3000
+                                &#8381;</span></li>
+                        <hr>
+                    </ul>
+                </div>
+                <div class="modal" id="molting">
+                    <div class="modal__close">&times;</div>
+                    <p class="aboutCategory">
+                        Экспресс-линька — это процесс, с помощью которого
+                        удаляется линялая шерсть.
+                        В данную услугу входит: гигиеническая чистка ушей,
+                        стрижка когтей, вычесывание
+                        шерсти с помощью специальных инстуметов, мытье
+                        профессиональными средствами в три этапа, финальный
+                        вычес шерсти.
+                    </p>
+                    <ul class="category-list">
+                        <li>Собаки до 4 киллограмм <span>2000
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Собаки до 7 киллограмм <span>2500
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Собаки до 15 киллограмм <span>3500
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Собаки от 15 киллограмм <span>4500
+                                &#8381;</span></li>
+                        <hr>
+                    </ul>
+                </div>
+                <div class="modal" id="grooming">
+                    <div class="modal__close">&times;</div>
+                    <p class="aboutCategory">
+                        Груминг - это комплекс мероприятий по уходу за
+                        животными. Причем это
+                        не только стрижка шерсти. Этот комплекс включает в себя
+                        также обрезку
+                        когтей, обработку глаз и ушей, профилактическую чистку
+                        параанальных желез,
+                        а также тримминг и экспресс-линьку в зависимости от вида
+                        и породы животного.
+                    </p>
+                    <ul class="category-list">
+                        <li>Мелкие породы <span>2500 &#8381;</span></li>
+                        <p>[Шпиц, Йоркширский терьер, Чихуахуа, Мальтезе,
+                            Гриффон]</p>
+                        <hr>
+                        <li>Средние породы <span>3000 &#8381;</span></li>
+                        <p>[Пудель, Мальтипу, Ши-тцу, Бишон фризе, Корги,
+                            Спаниели, Французский бульдог,
+                            Пекинес, Джек Пассел Терьер, Китайская хохлатая,
+                            Сиба-ину, Такса]</p>
+                        <hr>
+                        <li>Крупные породы <span>4000 &#8381;</span></li>
+                        <p>[Хаски, Голден Ретривер, Бернский зененхунж, Метис,
+                            Самоед, Чау-чау, Ламбрадор]</p>
+                        <hr>
+                    </ul>
+                </div>
+                <div class="modal" id="hygiene">
+                    <div class="modal__close">&times;</div>
+                    <p class="aboutCategory">
+                        Важность гигиенических процедур для собаки сложно
+                        переоценить.
+                        Они поддерживают ее здоровье, создают комфортные условия
+                        жизни.
+                        Гигиена и содержание собаки связаны с особенностями
+                        породы,
+                        длиной шерсти, образом жизни животного и другими
+                        индивидуальными
+                        особенностями.
+                    </p>
+                    <ul class="category-list">
+                        <li>Чистка зубов <span>300 &#8381;</span></li>
+                        <hr>
+                        <li>Чистка ушей и глаз <span>200 &#8381;</span></li>
+                        <hr>
+                        <li>Вырезание колтунов <span>500 &#8381;</span></li>
+                        <hr>
+                        <li>Стрижка когтей <span> 500 &#8381;</span></li>
+                        <hr>
+                    </ul>
+                </div>
+                <div class="modal" id="cats">
+                    <div class="modal__close">&times;</div>
+                    <p class="aboutCategory">
+                        Купание кошки не входит в список обязательных
+                        мероприятий, так
+                        как большинство кошек боятся воды и не позволяют
+                        качественно
+                        провести эту процедуру.
+                        В том случае, когда речь идет не о стрижке, а о
+                        вычесывании
+                        колтунов и линяющей шерсти, купание кошки становится
+                        неотъемлемой частью данной процедуры, так как это
+                        позволяет
+                        распутать и расправить всю шерсть при сушке феном.
+                    </p>
+                    <ul class="category-list">
+                        <li>Стрижка <span>1000 &#8381;</span></li>
+                        <hr>
+                        <li>Обрезание когтей, чистка ушей и глаз <span>500
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Вычёсывание с мытьём <span>1500 &#8381;</span></li>
+                        <hr>
+                    </ul>
+                </div>
+                <div class="modal" id="care">
+                    <div class="modal__close">&times;</div>
+                    <p class="aboutCategory">
+                        Груминг салоны предлагают своим клиентам большой выбор
+                        различных процедур, благодаря которым можно восстановить
+                        шерсть после агрессивных косметических средств для
+                        выставки, вылечить дерматит, избавиться от зуда и
+                        улучшить общее психологическое состояние питомца.
+                    </p>
+                    <ul class="category-list">
+                        <li>СПА уход <span>2000 &#8381;</span></li>
+                        <p>СПА уход может включать в себя мытье, нанесение
+                            специальной косметики, использование масок для
+                            шерсти</p>
+                        <hr>
+                        <li>Обертывание<span>1500 &#8381;</span></li>
+                        <hr>
+                        <li>Ароматерапия <span>1500 &#8381;</span></li>
+                        <hr>
+                        <li>Озонотерапия <span>1500 &#8381;</span></li>
+                        <hr>
+                        <li>Гидромассаж <span>2500 &#8381;</span></li>
+                        <hr>
+                    </ul>
+                </div>
+                <div class="modal" id="exhibition">
+                    <div class="modal__close">&times;</div>
+                    <p class="aboutCategory">
+                        Выставочный груминг требует более тщательного подхода,
+                        включая определенные стандарты
+                        внешнего вида, подчеркивающих породность и достоинства
+                        животного. При проведении груминга
+                        необходимо учитывать породу, тип шерсти и индивидуальные
+                        особенности каждого питомца, чтобы достичь наилучших
+                        результатов.
+                        Ушные раковины должны быть чистыми, а когти укорочены.
+                        Зубы должны быть без отложения зубного налета.
+                    </p>
+                    <ul class="category-list">
+                        <li>Собаки до 4 киллограмм <span>3000
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Собаки до 7 киллограмм <span>3500
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Собаки до 15 киллограмм <span>4000
+                                &#8381;</span></li>
+                        <hr>
+                        <li>Собаки от 15 киллограмм <span>4000
+                                &#8381;</span></li>
+                        <hr>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="services__blocks">
-            <div id="haircut" class="services__item item">
-                <div class="item__name">Стрижка</div>
-                <div class="item__price"> от 1500 &#8381;</div>
-            </div>
-            <div class="services__item item">
-                <div class="item__name ">Стрижка</div>
-                <div class="item__price"> от 1500 &#8381;</div>
-            </div>
-            <div class="services__item item">
-                <div class="item__name">Стрижка</div>
-                <div class="item__price"> от 1500 &#8381;</div>
-            </div>
-        </div>
-    </section>
-</body>
+        <script src="js/jquery-3.7.1.js"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>
