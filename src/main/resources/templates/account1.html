@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../../../OneDrive/Desktop/diplomaGrooming/css/reboot.css">
+    <link rel="stylesheet" href="../../../../../../OneDrive/Desktop/diplomaGrooming/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800" rel="stylesheet" />
+    <title>страница личного кабинета</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header container">
+            <div class="header__logo logo">
+                <a href="../../../../../../OneDrive/Desktop/diplomaGrooming/index.html">дай лапу</a>
+            </div>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a class="link" href="http://127.0.0.1:5500/index.html#about">о студии</a></li>
+                    <li><a class="link" href="http://127.0.0.1:5500/index.html#services">услуги</a></li>
+                    <li><a class="link" href="http://127.0.0.1:5500/index.html#reviews">отзывы</a></li>
+                    <li><a class="link" href="account.html">личный кабинет</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="account container">
+                <div class="account__info">
+                    <div id="login" class="account__item">
+                        Логин: <span>alofsmd</span>
+                    </div>
+                    <div id="name" class="account__item">
+                        Имя: <span>Ирина</span>
+                    </div>
+                    <div id="surname" class="account__item">
+                        Фамилия: <span>Алешкова</span>
+                    </div>
+                    <div id="phone" class="account__item">
+                        Номер: <span>+7 (999) 999-99-99</span>
+                    </div>
+                    <div id="email" class="account__item">
+                        Email: <span>alala@gmail.com</span>
+                    </div>
+                    <input data-modal="btnEditDataUser" class="btnEditDataUser" type="button" value="изменить данные">
+                </div>
+                <div class="account__records">
+                    <!-- <a href="admin.html" class="linkForAdmin">для админа</a>
+                    <p>
+                        Нет предстоящих записей <br>
+                        <a class="link-record" href="http://127.0.0.1:5500/index.html#record">записаться</a>
+                    </p> -->
+                    <p>Ваши предстоящие записи:</p>
+                    <table class="table-records">
+                        <tr>
+                            <td>Процедура:</td>
+                            <td>Дата и время:</td>
+                        </tr>
+                        <tr>
+                            <td>Стрижка большие породы</td>
+                            <td>22.06.24</td>
+                        </tr>
+                        <tr>
+                            <td>Стрижка большие породы</td>
+                            <td>22.06.24</td>
+                        </tr>
+                        <tr>
+                            <td>Стрижка большие породы</td>
+                            <td>22.06.24</td>
+                        </tr>
+                    </table>
+                </div>
+        </section>
+    </div>
+    <div class="overlay">
+        <div class="modal" id="editDataUser">
+            <div class="modal__close">&times;</div>
+            <div class="account__info">
+                <div id="name" class="account__item">
+                    Имя: <input class="editDataInput" type="text">
+                </div>
+                <div id="surname" class="account__item">
+                    Фамилия: <input class="editDataInput" type="text">
+                </div>
+                <div id="phone" class="account__item">
+                    Номер: <input class="editDataInput" type="text">
+                </div>
+                <div id="email" class="account__item">
+                    Email: <input class="editDataInput" type="text">
+                </div>
+                <input class="btnEditDataUser" type="button" value="изменить данные">
+            </div>
+        </div>
+    </div>
+    <script src="../../../../../../OneDrive/Desktop/diplomaGrooming/js/jquery-3.7.1.js"></script>
+    <script src="../../../../../../OneDrive/Desktop/diplomaGrooming/js/script.js"></script>
+</body>
+</html>
