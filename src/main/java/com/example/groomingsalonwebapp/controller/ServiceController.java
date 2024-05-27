@@ -8,6 +8,7 @@ import com.example.groomingsalonwebapp.service.AppointmentService;
 import com.example.groomingsalonwebapp.service.CategoryService;
 import com.example.groomingsalonwebapp.service.ServicesService;
 import com.example.groomingsalonwebapp.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -66,12 +67,12 @@ public class ServiceController {
     }
 
     @PostMapping("/appointments/new")
-    public String saveAppointment(@ModelAttribute Appointment appointment) {
+    public ResponseEntity<?> saveAppointment(@ModelAttribute Appointment appointment) {
         User userAuth = userService.getAuthUser();
         appointment.setUser(userAuth);
 
         appointmentService.save(appointment);
-        return "redirect:/home";
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/services")

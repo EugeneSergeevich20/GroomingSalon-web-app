@@ -250,6 +250,8 @@
         </div>
     </section>
 
+    <div id="toast" class="toast">Запись прошла успешно!</div>
+
     <footer class="footer container">
         <div class="footer__link">
             <div class="logo">
@@ -450,6 +452,39 @@
                             text: service.name
                         }));
                     });
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    function showToast() {
+        var toast = document.getElementById("toast");
+        toast.className = "toast show";
+        setTimeout(function() {
+            toast.className = toast.className.replace("show", "");
+        }, 15000);
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                success: function(response) {
+                    showToast();
+                    setTimeout(function() {
+                        window.location.href = "/home";
+                    }, 1500);
+                },
+                error: function(response) {
+                    alert("Произошла ошибка при записи на услугу.");
                 }
             });
         });
