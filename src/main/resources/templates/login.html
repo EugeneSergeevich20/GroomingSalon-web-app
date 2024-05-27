@@ -1,36 +1,58 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/style.css">
-    <title>страница входа</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/reboot.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800" rel="stylesheet" />
+        <title>страница входа</title>
+    </head>
 <body>
-    <div class="registration">
-        <form id="form-registration" class="block-form" th:method="POST" th:action="@{/process-login}">
-            <div class="block-form__title">Войти</div>
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-            <div th:if="${param.error}">
-                Неправильный логин или пароль
+    <div class="wrapper">
+        <header class="header container">
+            <div class="header__logo logo">
+                <a th:href="@{/home}">дай лапу</a>
             </div>
-            <div class="block-input block-input_long">
-                <label for="login" class="block-input__title">Ваш логин:</label>
-                <input type="text" name="username" id="login" class="block-input__text">
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a class="link" th:href="@{/home#about}">о студии</a></li>
+                    <li><a class="link" th:href="@{/home#services}">услуги</a></li>
+                    <li><a class="link" th:href="@{/home#reviews}">отзывы</a></li>
+                    <li>
+                        <a th:if="${user != null}" class="link" th:href="@{/user/account/{login}(login = ${user.username})}">личный кабинет</a>
+                        <a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="registration login">
+            <form id="form-registration" class="block-form" th:method="POST" th:action="@{/process-login}">
+                <div class="block-form__title">Войти</div>
+                <div class="block-input block-input_long">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <div th:if="${param.error}">
+                        Неправильный логин или пароль
+                    </div>
+                    <label for="username" class="block-input__title">Ваш логин:</label>
+                    <input type="text" name="username" id="username" class="block-input__text">
+                </div>
+                <div class="block-input block-input_long">
+                    <label for="pass" class="block-input__title">Пароль:</label>
+                    <input type="password" name="password" id="pass" class="block-input__text">
+                </div>
+                <div id="errorBlock"></div>
+                <input class="main-btn" type="submit" value="Войти">
+            </form>
+            <div class="anotherPage">Если у вас нет аккаунта ➔ 
+                <span>
+                    <a class="link" th:href="@{/auth/register}">Зарегистрироваться</a>
+                </span> 
             </div>
-            <div class="block-input block-input_long">
-                <label for="pass" class="block-input__title">Пароль:</label>
-                <input type="password" name="password" id="pass" class="block-input__text">
-            </div>
-            <div id="errorBlock"></div>
-            <input class="main-btn" type="submit" value="Зарегистрироваться">
-        </form>
-        <div class="anotherPage">Если у вас нет аккаунта ➔ 
-            <span>
-                <a class="anotherPage__link" th:href="@{/auth/register}">Зарегистрироваться</a>
-            </span> 
-        </div>
-    </div>  
+        </div>  
+    </div>
+
 </body>
 </html>

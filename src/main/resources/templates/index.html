@@ -5,7 +5,6 @@
     <title>Title</title>
     <link rel="stylesheet" href="/css/reboot.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         @font-face {
@@ -18,16 +17,19 @@
 <div class="wrapper">
 
     <section class="promo container">
-        <header class="header">
+        <header class="header container">
             <div class="header__logo logo">
-                <a href="test2.html">дай лапу</a>
+                <a th:href="@{/home}">дай лапу</a>
             </div>
             <nav class="nav">
                 <ul class="nav__list">
-                    <li><a href="#about">о студии</a></li>
-                    <li><a href="#services">услуги</a></li>
-                    <li><a href="#reviews">отзывы</a></li>
-                    <li><a href="account.html">личный кабинет</a></li>
+                    <li><a class="link" th:href="@{/home#about}">о студии</a></li>
+                    <li><a class="link" th:href="@{/home#services}">услуги</a></li>
+                    <li><a class="link" th:href="@{/home#reviews}">отзывы</a></li>
+                    <li>
+                        <a th:if="${user != null}" class="link" th:href="@{/user/account/{login}(login = ${user.username})}">личный кабинет</a>
+                        <a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a>
+                    </li>
                 </ul>
             </nav>
         </header>
