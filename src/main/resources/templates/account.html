@@ -49,28 +49,20 @@
             <input data-modal="btnEditDataUser" class="btnEditDataUser" type="button" value="изменить данные">
         </div>
         <div class="account__records">
-            <!-- <a href="admin.html" class="linkForAdmin">для админа</a>
-            <p>
+            <!--<a href="admin.html" class="linkForAdmin">для админа</a>-->
+            <p th:if="${appointments.size() == 0 || appointments == null}">
                 Нет предстоящих записей <br>
                 <a class="link-record" href="http://127.0.0.1:5500/index.html#record">записаться</a>
-            </p> -->
-            <p>Ваши предстоящие записи:</p>
+            </p>
+            <p th:if="${appointments.size() != 0 || appointments != null}">Ваши предстоящие записи:</p>
             <table class="table-records">
                 <tr>
                     <td>Процедура:</td>
                     <td>Дата и время:</td>
                 </tr>
-                <tr>
-                    <td>Стрижка большие породы</td>
-                    <td>22.06.24</td>
-                </tr>
-                <tr>
-                    <td>Стрижка большие породы</td>
-                    <td>22.06.24</td>
-                </tr>
-                <tr>
-                    <td>Стрижка большие породы</td>
-                    <td>22.06.24</td>
+                <tr th:each="appointment : ${appointments}">
+                    <td th:text="${appointment.service.name}">Стрижка большие породы</td>
+                    <td th:text="${appointment.date + ' ' + appointment.time}">22.06.24</td>
                 </tr>
             </table>
         </div>

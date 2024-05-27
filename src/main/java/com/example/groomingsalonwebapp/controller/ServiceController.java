@@ -67,6 +67,9 @@ public class ServiceController {
 
     @PostMapping("/appointments/new")
     public String saveAppointment(@ModelAttribute Appointment appointment) {
+        User userAuth = userService.getAuthUser();
+        appointment.setUser(userAuth);
+
         appointmentService.save(appointment);
         return "redirect:/home";
     }

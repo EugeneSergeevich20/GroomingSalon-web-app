@@ -27,4 +27,8 @@ public class Appointment  {
     private LocalDate date;
     private LocalTime time;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }
