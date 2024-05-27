@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link
             href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900"
             rel="stylesheet" />
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="/css/style.css">
         <title>страница услуг</title>
     </head>
     <body>
         <section class="services container">
             <header class="header">
                 <div class="header__logo">
-                    <a class="link" href="index.html">
-                        <img src="img/logo.svg" alt="logo">
+                    <a class="link"  th:href="@{/home}">
+                        <img src="/img/logo.svg" alt="logo">
                     </a>
                 </div>
                 <nav class="header__nav">
                     <ul>
-                        <li><a class="link" href="services.html">наши
+                        <li><a class="link" th:href="@{/service}">наши
                                 услуги</a></li>
-                        <li><a class="link" href="account.html">личный
-                                кабинет</a></li>
+                        <li><a th:if="${user != null}" class="link" th:href="@{/user/account/{login}(login = ${user.getUsername()})}">личный кабинет</a></li>
+                        <li><a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a></li>
                     </ul>
                 </nav>
                 <div class="main-btn">
@@ -33,42 +33,48 @@
             <div class="services__blocks">
                 <div data-model="trimming" class="services__item service1">
                     <div class="services__name">
-                        Тримминг
+                        <p th:text="${category.get('Тримминг').name}"></p>
                     </div>
                 </div>
                 <div data-model="washing" class="services__item service3">
                     <div class="services__name">
-                        Мойка + сушка
+                        <p th:text="${category.get('Мойка + сушка').name}"></p>
                     </div>
                 </div>
                 <div data-model="molting" class="services__item service4">
                     <div class="services__name">
-                        Экспресс линька
+
+                        <p th:text="${category.get('Экспресс линька').name}"></p>
                     </div>
                 </div>
                 <div data-model="grooming" class="services__item service5">
                     <div class="services__name">
-                        Груминг
+
+                        <p th:text="${category.get('Груминг').name}"></p>
                     </div>
                 </div>
                 <div data-model="hygiene" class="services__item service6">
                     <div class="services__name">
-                        Гигиена
+
+                        <p th:text="${category.get('Гигиена').name}"></p>
                     </div>
                 </div>
                 <div data-model="cats" class="services__item service7">
                     <div class="services__name">
-                        Комплекс для кошек
+
+                        <p th:text="${category.get('Комплекс для кошек').name}"></p>
                     </div>
                 </div>
                 <div data-model="care" class="services__item service8">
                     <div class="services__name">
-                        Уход
+
+                        <p th:text="${category.get('Уход').name}"></p>
                     </div>
                 </div>
                 <div data-model="exhibition" class="services__item service2">
                     <div class="services__name">
-                        Подготовка к выставке
+
+                        <p th:text="${category.get('Подготовка к выставке').name}"></p>
                     </div>
                 </div>
             </div>
@@ -82,15 +88,15 @@
                     яркой и блестящей, поддерживать правильную структуру волоса и аккуратный вид питомца,
                     стимулировать рост новой шерсти.
                 </p>
-                <ul class="category-list">
-                    <li>Тримминг мелкие породы <span>3000 &#8381;</span></li>
+                <ul class="category-list" th:each="service : ${trimming}">
+                    <li th:text="${service.name}">Тримминг мелкие породы <span th:text="${service.getPriceString() + '&#8381'}">3000 &#8381;</span></li>
                     <hr>
-                    <li>Тримминг средние породы <span>4000 &#8381;</span></li>
+                    <!--<li>Тримминг средние породы <span>4000 &#8381;</span></li>
                     <hr>
                     <li>Тримминг крупные породы <span>5000 &#8381;</span></li>
                     <hr>
                     <li>Тримминг огромные породы <span>6000 &#8381;</span></li>
-                    <hr>
+                    <hr>-->
                 </ul>
             </div>
             <div class="modal" id="washing">
@@ -99,15 +105,15 @@
                     Мойка и сушка собак - это комплексная процедура, направленная на поддержание гигиены
                     и внешнего вида Вашего питомца.
                 </p>
-                <ul class="category-list">
-                    <li>Мойка + сушка мелкие породы <span>1500 &#8381;</span></li>
+                <ul class="category-list" th:each="service : ${moikas}">
+                    <li th:text="${service.name}">Мойка + сушка мелкие породы <span th:text="${service.getPriceString() + '&#8381'}">1500 &#8381;</span></li>
                     <hr>
-                    <li>Мойка + сушка средние породы <span>2000 &#8381;</span></li>
+                   <!-- <li>Мойка + сушка средние породы <span>2000 &#8381;</span></li>
                     <hr>
                     <li>Мойка + сушка крупные породы <span>2500 &#8381;</span></li>
                     <hr>
                     <li>Мойка + сушка огромные породы <span>3000 &#8381;</span></li>
-                    <hr>
+                    <hr>-->
                 </ul>
             </div>
             <div class="modal" id="molting">
@@ -117,15 +123,15 @@
                     В данную услугу входит: гигиеническая чистка ушей, стрижка когтей, вычесывание
                     шерсти с помощью специальных инстуметов, мытье профессиональными средствами в три этапа, финальный вычес шерсти.
                 </p>
-                <ul class="category-list">
-                    <li>Собаки до 4 киллограмм <span>2000 &#8381;</span></li>
+                <ul class="category-list" th:each="service : ${expressLinka}">
+                    <li  th:text="${service.name}">Собаки до 4 киллограмм <span th:text="${service.getPriceString() + '&#8381'}">2000 &#8381;</span></li>
                     <hr>
-                    <li>Собаки до 7 киллограмм <span>2500 &#8381;</span></li>
+                    <!--<li>Собаки до 7 киллограмм <span>2500 &#8381;</span></li>
                     <hr>
                     <li>Собаки до 15 киллограмм <span>3500 &#8381;</span></li>
                     <hr>
                     <li>Собаки от 15 киллограмм <span>4500 &#8381;</span></li>
-                    <hr>
+                    <hr>-->
                 </ul>
             </div>
             <div class="modal" id="grooming">
@@ -136,17 +142,17 @@
                     когтей, обработку глаз и ушей, профилактическую чистку параанальных желез,
                     а также тримминг и экспресс-линьку в зависимости от вида и породы животного.
                 </p>
-                <ul class="category-list">
-                    <li>Мелкие породы <span>2500 &#8381;</span></li>
-                    <p>[Шпиц, Йоркширский терьер, Чихуахуа, Мальтезе, Гриффон]</p>
+                <ul class="category-list" th:each="service : ${grooming}">
+                    <li th:text="${service.name}">Мелкие породы <span th:text="${service.getPriceString() + '&#8381'}">2500 &#8381;</span></li>
+                    <!--<p>[Шпиц, Йоркширский терьер, Чихуахуа, Мальтезе, Гриффон]</p>-->
                     <hr>
-                    <li>Средние породы <span>3000 &#8381;</span></li>
+                    <!--<li>Средние породы <span>3000 &#8381;</span></li>
                     <p>[Пудель, Мальтипу, Ши-тцу, Бишон фризе, Корги, Спаниели, Французский бульдог,
                         Пекинес, Джек Пассел Терьер, Китайская хохлатая, Сиба-ину, Такса]</p>
                     <hr>
                     <li>Крупные породы <span>4000 &#8381;</span></li>
                     <p>[Хаски, Голден Ретривер, Бернский зененхунж, Метис, Самоед, Чау-чау, Ламбрадор]</p>
-                    <hr>
+                    <hr>-->
                 </ul>
             </div>
             <div class="modal" id="hygiene">
@@ -158,15 +164,15 @@
                     длиной шерсти, образом жизни животного и другими индивидуальными
                     особенностями.
                 </p>
-                <ul class="category-list">
-                    <li>Чистка зубов <span>300 &#8381;</span></li>
+                <ul class="category-list" th:each="service : ${hygiene}">
+                    <li th:text="${service.name}">Чистка зубов <span th:text="${service.getPriceString() + '&#8381'}">300 &#8381;</span></li>
                     <hr>
-                    <li>Чистка ушей и глаз <span>200 &#8381;</span></li>
+                    <!--<li>Чистка ушей и глаз <span>200 &#8381;</span></li>
                     <hr>
                     <li>Вырезание колтунов <span>500 &#8381;</span></li>
                     <hr>
                     <li>Стрижка когтей <span> 500 &#8381;</span></li>
-                    <hr>
+                    <hr>-->
                 </ul>
             </div>
             <div class="modal" id="cats">
@@ -180,13 +186,13 @@
                     неотъемлемой частью данной процедуры, так как это позволяет
                     распутать и расправить всю шерсть при сушке феном.
                 </p>
-                <ul class="category-list">
-                    <li>Стрижка <span>1000 &#8381;</span></li>
+                <ul class="category-list" th:each="service : ${complexForCat}">
+                    <li th:text="${service.name}">Стрижка <span th:text="${service.getPriceString() + '&#8381'}">1000 &#8381;</span></li>
                     <hr>
-                    <li>Обрезание когтей, чистка ушей и глаз <span>500 &#8381;</span></li>
+                    <!--<li>Обрезание когтей, чистка ушей и глаз <span>500 &#8381;</span></li>
                     <hr>
                     <li>Вычёсывание с мытьём <span>1500 &#8381;</span></li>
-                    <hr>
+                    <hr>-->
                 </ul>
             </div>
             <div class="modal" id="care">
@@ -195,18 +201,18 @@
                     Груминг салоны предлагают своим клиентам большой выбор различных процедур, благодаря которым можно восстановить 
                     шерсть после агрессивных косметических средств для выставки, вылечить дерматит, избавиться от зуда и улучшить общее психологическое состояние питомца. 
                 </p>
-                <ul class="category-list">
-                    <li>СПА уход <span>2000 &#8381;</span></li>
-                    <p>СПА уход может включать в себя мытье, нанесение специальной косметики, использование масок для шерсти</p>
+                <ul class="category-list" th:each="service : ${care}">
+                    <li th:text="${service.name}">СПА уход <span th:text="${service.getPriceString() + '&#8381'}">2000 &#8381;</span></li>
+                    <!--<p>СПА уход может включать в себя мытье, нанесение специальной косметики, использование масок для шерсти</p>-->
                     <hr>
-                    <li>Обертывание<span>1500 &#8381;</span></li>
+                    <!--<li>Обертывание<span>1500 &#8381;</span></li>
                     <hr>
                     <li>Ароматерапия <span>1500 &#8381;</span></li>
                     <hr>
                     <li>Озонотерапия <span>1500 &#8381;</span></li>
                     <hr>
                     <li>Гидромассаж <span>2500 &#8381;</span></li>
-                    <hr>
+                    <hr>-->
                 </ul>
             </div>
             <div class="modal" id="exhibition">
@@ -217,15 +223,15 @@
                     необходимо учитывать породу, тип шерсти и индивидуальные особенности каждого питомца, чтобы достичь наилучших результатов.
                     Ушные раковины должны быть чистыми, а когти укорочены. Зубы должны быть без отложения зубного налета. 
                 </p>
-                <ul class="category-list">
-                    <li>Собаки до 4 киллограмм <span>3000 &#8381;</span></li>
+                <ul class="category-list" th:each="service : ${preparation}">
+                    <li th:text="${service.name}">Собаки до 4 киллограмм <span th:text="${service.getPriceString() + '&#8381'}">3000 &#8381;</span></li>
                     <hr>
-                    <li>Собаки до 7 киллограмм <span>3500 &#8381;</span></li>
+                    <!--<li>Собаки до 7 киллограмм <span>3500 &#8381;</span></li>
                     <hr>
                     <li>Собаки до 15 киллограмм <span>4000 &#8381;</span></li>
                     <hr>
                     <li>Собаки от 15 киллограмм <span>4000 &#8381;</span></li>
-                    <hr>
+                    <hr>-->
                 </ul>
             </div>
         </div>
