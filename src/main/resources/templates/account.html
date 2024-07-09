@@ -3,108 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
     <link rel="stylesheet" href="/css/reboot.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900"
-          rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/media.css">
     <title>страница личного кабинета</title>
 </head>
 <body>
-<div class="wrapper">
-    <header class="header container">
-        <div class="header__logo logo">
-            <a th:href="@{/home}">дай лапу</a>
-        </div>
-        <nav class="nav">
-            <ul class="nav__list">
-                <li><a class="link" th:href="@{/home#about}">о студии</a></li>
-                <li><a class="link" th:href="@{/home#services}">услуги</a></li>
-                <li><a class="link" th:href="@{/home#reviews}">отзывы</a></li>
-                <li>
-                    <a th:if="${user != null}" class="link"
-                       th:href="@{/user/account/{login}(login = ${user.username})}">личный кабинет</a>
-                    <a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <section class="account container">
-        <div class="account__info">
-            <div id="login" class="account__item">
-                Логин: <span th:text="*{user.username}">alofsmd</span>
+    <div class="wrapper">
+        <header class="header container">
+            <div class="header__logo logo">
+                <a th:href="@{/home}">дай лапу</a>
             </div>
-            <div id="name" class="account__item">
-                Имя: <span th:text="*{user.name}">Ирина</span>
-            </div>
-            <div id="surname" class="account__item">
-                Фамилия: <span th:text="*{user.surname}">Алешкова</span>
-            </div>
-            <div id="phone" class="account__item">
-                Номер: <span th:text="*{user.phoneNumber}">+7 (999) 999-99-99</span>
-            </div>
-            <div id="email" class="account__item">
-                Email: <span th:text="*{user.email}">alala@gmail.com</span>
-            </div>
-            <input data-modal="btnEditDataUser" class="btnEditDataUser" type="button" value="изменить данные">
-        </div>
-        <div class="account__records">
-            <!--<a href="admin.html" class="linkForAdmin">для админа</a>-->
-            <p th:if="${appointments.size() == 0 || appointments == null}">
-                Нет предстоящих записей <br>
-                <a class="link-record" href="http://127.0.0.1:5500/index.html#record">записаться</a>
-            </p>
-            <p th:if="${appointments.size() != 0 || appointments != null}">Ваши предстоящие записи:</p>
-            <table class="table-records">
-                <tr>
-                    <td>Процедура:</td>
-                    <td>Дата и время:</td>
-                </tr>
-                <tr th:each="appointment : ${appointments}">
-                    <td th:text="${appointment.service.name}">Стрижка большие породы</td>
-                    <td th:text="${appointment.date + ' ' + appointment.time}">22.06.24</td>
-                </tr>
-            </table>
-        </div>
-    </section>
-</div>
-<div class="overlay">
-    <div class="modal" id="editDataUser">
-        <div class="modal__close">&times;</div>
-        <form id="form-registration" class="block-form" th:method="POST" th:action="@{/user/edit-user/process}">
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a class="link" th:href="@{/home#about}">о студии</a></li>
+                    <li><a class="link" th:href="@{/home#services}">услуги</a></li>
+                    <li><a class="link" th:href="@{/home#reviews}">отзывы</a></li>
+                    <li>
+                        <a th:if="${user != null}" class="link"
+                           th:href="@{/user/account/{login}(login = ${user.username})}">личный кабинет</a>
+                        <a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section class="account container">
             <div class="account__info">
+                <div id="login" class="account__item">
+                    Логин: <span th:text="*{user.username}">alofsmd</span>
+                </div>
                 <div id="name" class="account__item">
-                    Имя: <input class="editDataInput" type="text" th:field="*{user.name}">
+                    Имя: <span th:text="*{user.name}">Ирина</span>
                 </div>
                 <div id="surname" class="account__item">
-                    Фамилия: <input class="editDataInput" type="text" th:field="*{user.surname}">
+                    Фамилия: <span th:text="*{user.surname}">Алешкова</span>
                 </div>
                 <div id="phone" class="account__item">
-                    Номер: <input id="phone" class="editDataInput" type="text" th:field="*{user.phoneNumber}">
+                    Номер: <span th:text="*{user.phoneNumber}">+7 (999) 999-99-99</span>
                 </div>
                 <div id="email" class="account__item">
-                    Email: <input class="editDataInput" type="text" th:field="*{user.email}">
+                    Email: <span th:text="*{user.email}">alala@gmail.com</span>
                 </div>
-                <input class="btnEditDataUser" type="submit" value="изменить данные">
+                <input data-modal="btnEditDataUser" class="btnEditDataUser" type="button" value="изменить данные">
             </div>
-        </form>
+            <div class="account__records">
+                <p th:if="${appointments.size() == 0 || appointments == null}">
+                    Нет предстоящих записей <br>
+                    <a class="link-record" th:href="@{/home#record}" href="">записаться</a>
+                </p>
+                <div th:if="${appointments.size() != 0}">
+                    <p>Ваши предстоящие записи:</p>
+                    <table class="table-records">
+                        <tr>
+                            <td>Процедура:</td>
+                            <td>Дата и время:</td>
+                        </tr>
+                        <tr th:each="appointment : ${appointments}">
+                            <td th:text="${appointment.service.name}">Стрижка большие породы</td>
+                            <td th:text="${appointment.date + ' ' + appointment.time}">22.06.24</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
     </div>
-</div>
-<script src="/js/jquery-3.7.1.js"></script>
-<script src="/js/script.js"></script>
-<script>
-    $(document).ready(function(){
+    <div class="overlay">
+        <div class="modal" id="editDataUser">
+            <div class="modal__close">&times;</div>
+            <form id="form-registration" th:method="POST" th:action="@{/user/edit-user/process}">
+                <div class="account__info">
+                    <div id="name" class="account__item">
+                        Имя: <input class="editDataInput" type="text" th:field="*{user.name}">
+                    </div>
+                    <div id="surname" class="account__item">
+                        Фамилия: <input class="editDataInput" type="text" th:field="*{user.surname}">
+                    </div>
+                    <div class="account__item">
+                        Номер: <input id="phone" name="phone" placeholder="+7 (999) 999-99-99" class="editDataInput" type="text" th:field="*{user.phoneNumber}">
+                    </div>
+                    <div id="email" class="account__item">
+                        Email: <input class="editDataInput" type="text" th:field="*{user.email}">
+                    </div>
+                    <input class="btnEditDataUser" type="submit" value="изменить данные">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/js/jquery-3.7.1.js"></script>
+    <!-- подключение библиотеки jquery -->
+    <script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
+    <!-- подлючение самого плагина на маски ввода -->
+    <script src="/js/script.js"></script>
+    <!-- подлючение своего скрипта -->
+    <script type="text/javascript">
+        // маска для номера телефона
         $(document).ready(function() {
             $("#phone").mask("+7 (999) 999-99-99");
         });
+    </script>
 
-        $('#editDataUserBtn').on('click', function() {
-            $('.overlay').fadeIn('slow');
-        });
-        $('.modal__close').on('click', function() {
-            $('.overlay').fadeOut('slow');
-        });
-    });
-</script>
 </body>
 </html>

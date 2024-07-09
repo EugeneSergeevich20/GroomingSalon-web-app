@@ -3,18 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
         <link rel="stylesheet" href="/css/reboot.css">
         <link rel="stylesheet" href="/css/style.css">
-        <link
-            href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800"
-            rel="stylesheet" />
-        <style>
-        @font-face {
-        font-family: MyFont;
-        src: url("../../../../../../OneDrive/Desktop/diplomaGrooming/fonts/Soyuz Grotesk Bold.otf");
-        }
-        </style>
+        <link rel="stylesheet" href="/css/media.css">
         <title>страница регистрации</title>
     </head>
     <body>
@@ -96,35 +89,34 @@
             </div>
         </div>
     </div>
-
-        <script type="text/javascript" src="/js/jquery-3.7.1.js"></script>
-        <!-- подключение библиотеки jquery -->
-        <script type="text/javascript"
-            src="/js/jquery.maskedinput.min.js"></script>
-        <!-- подлючение самого плагина на маски ввода -->
-        <script type="text/javascript">
-            // маска для номера телефона
-            $(document).ready(function() {
+    <script type="text/javascript" src="/js/jquery-3.7.1.js"></script>
+    <!-- подключение библиотеки jquery -->
+    <script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
+    <!-- подлючение самого плагина на маски ввода -->
+    <script type="text/javascript">
+        // маска для номера телефона
+        $(document).ready(function() {
             $("#phone").mask("+7 (999) 999-99-99");
-            });
+        });
 
-            // проверка паролей на совпадение
-            let pass = document.getElementById('pass');
-            let pass_rep = document.getElementById('repPass');
-            let error = document.getElementById('errorBlock');
-            let btnRegistration = document.getElementById('btn-registration'); 
-            // задали переменные
-            repPass.addEventListener('input', checkPasswords);
-            // создали обработчик событий, который будет сразу выполнять функцию
-            // при вводе в инпуте "повтора пароля" проверять на совпадение
-            function checkPasswords() {
-                if (pass.value !== repPass.value){
-                    error.textContent = 'Пароли не совпадают';
-                }
-                else {
-                    error.textContent = '';
-                }
+        // проверка паролей на совпадение
+        let pass = document.getElementById('pass');
+        let pass_rep = document.getElementById('repPass');
+        let error = document.getElementById('errorBlock');
+        let btnRegistration = document.getElementById('btn-registration');
+        // задали переменные
+        repPass.addEventListener('input', checkPasswords);
+        // создали обработчик событий, который будет сразу выполнять функцию
+        // при вводе в инпуте "повтора пароля" проверять на совпадение
+        function checkPasswords() {
+            if (pass.value !== repPass.value){
+                error.textContent = 'Пароли не совпадают';
             }
-        </script>
+            else {
+                error.textContent = '';
+            }
+        }
+    </script>
+    <!-- подлючение своего скрипта -->
     </body>
 </html>

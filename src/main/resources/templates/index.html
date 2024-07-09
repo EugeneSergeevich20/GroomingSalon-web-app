@@ -2,475 +2,470 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800" rel="stylesheet" />
     <link rel="stylesheet" href="/css/reboot.css">
     <link rel="stylesheet" href="/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        @font-face {
-            font-family: MyFont;
-            src: url("fonts/Soyuz Grotesk Bold.otf");
-        }
-    </style>
+    <link rel="stylesheet" href="/css/media.css">
+    <title>главная страница</title>
 </head>
 <body>
-<div class="wrapper">
-
-    <section class="promo container">
-        <header class="header container">
-            <div class="header__logo logo">
-                <a th:href="@{/home}">дай лапу</a>
+    <div class="wrapper">
+        <section class="promo container">
+            <header class="header">
+                <div class="header__logo logo">
+                    <a th:href="@{/home}">дай лапу</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li><a class="link" th:href="@{/home#about}">о студии</a></li>
+                        <li><a class="link" th:href="@{/home#services}">услуги</a></li>
+                        <li><a class="link" th:href="@{/home#reviews}">отзывы</a></li>
+                        <li>
+                            <a th:if="${user != null}" class="link" th:href="@{/user/account/{login}(login = ${user.username})}">личный кабинет</a>
+                            <a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <div class="promo__title">
+                профессиональный <br>
+                груминг для собак <br>
+                и кошек в Самаре
             </div>
-            <nav class="nav">
-                <ul class="nav__list">
-                    <li><a class="link" th:href="@{/home#about}">о студии</a></li>
-                    <li><a class="link" th:href="@{/home#services}">услуги</a></li>
-                    <li><a class="link" th:href="@{/home#reviews}">отзывы</a></li>
-                    <li>
-                        <a th:if="${user != null}" class="link" th:href="@{/user/account/{login}(login = ${user.username})}">личный кабинет</a>
-                        <a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a>
+            <div class="promo__subtitle">
+                Комплексный и бережный уход за вашими питомцами: <br>
+                стрижка, мытье, SPA-уход, креативный груминг
+            </div>
+            <div class="btn-record">
+                <a href="#record">записаться &#129122;</a>
+            </div>
+            <img class="circle" src="/img/circle/BlueCircle.png"
+                 alt="BlueCircle">
+            <img class="circle-photo" src="/img/circle/promoCirclePhoto.png"
+                 alt="promoCirclePhoto">
+        </section>
+
+        <section id="about" class="about container">
+            <div class="about__img">
+                <img src="/img/aboutSquarePhoto.png" alt="aboutSquarePhoto">
+            </div>
+            <div class="about__text">
+                <div class="about__title">нам доверяют <br> самое
+                    дорогое
+                </div>
+                <p>
+                    Мы преданно заботимся о вашем любимце с 2021 года. В
+                    нашей <br>
+                    студии груминга мы не просто стрижем и ухаживаем за
+                    животными, <br>
+                    мы создаем для них комфортное и радостное пребывание.
+                </p>
+                <p>
+                    Нам безумно важно психологическое и физическое здоровье
+                    <br>
+                    наших любимых хвостиков, поэтому мы все делаем
+                    аккуратно, <br>
+                    с нежностью, с заботой и любовью
+                </p>
+            </div>
+        </section>
+
+        <section class="advantages container">
+            <div class="advantages__title">
+                наша любовь и забота — <br> залог вашего комфорта
+            </div>
+            <div class="advantages__list">
+                <ul>
+                    <li>услуги для кошек и собак</li>
+                    <li>гибкий график приема</li>
+                    <li>безопасные и проверенные средства для ухода</li>
+                    <li>индивидуальный уход, учитывая особенности</li>
+                    <li>дружелюбная и уютная атмосфера в нашей студии</li>
+                    <li>большой опыт работы с различными породами
+                        животных
                     </li>
                 </ul>
-            </nav>
-        </header>
-        <div class="promo__title">
-            профессиональный <br>
-            груминг для собак <br>
-            и кошек в Самаре
-        </div>
-        <div class="promo__subtitle">
-            Комплексный и бережный уход за вашими питомцами: <br>
-            стрижка, мытье, SPA-уход, креативный груминг
-        </div>
-        <div class="btn-record">
-            <a href="#record">записаться &#129122;</a>
-        </div>
-        <img class="circle" src="/img/circle/BlueCircle.png"
-             alt="BlueCircle">
-        <img class="circle-photo" src="/img/circle/promoCirclePhoto.png"
-             alt="promoCirclePhoto">
-    </section>
-
-    <section id="about" class="about container">
-        <div class="about__img">
-            <img src="/img/aboutSquarePhoto.png" alt="aboutSquarePhoto">
-        </div>
-        <div class="about__text">
-            <div class="about__title">нам доверяют <br> самое
-                дорогое
             </div>
-            <p>
-                Мы преданно заботимся о вашем любимце с 2021 года. В
-                нашей <br>
-                студии груминга мы не просто стрижем и ухаживаем за
-                животными, <br>
-                мы создаем для них комфортное и радостное пребывание.
-            </p>
-            <p>
-                Нам безумно важно психологическое и физическое здоровье
-                <br>
-                наших любимых хвостиков, поэтому мы все делаем
-                аккуратно, <br>
-                с нежностью, с заботой и любовью
-            </p>
-        </div>
-    </section>
 
-    <section class="advantages container">
-        <div class="advantages__title">
-            наша любовь и забота — <br> залог вашего комфорта
-        </div>
-        <div class="advantages__list">
-            <ul>
-                <li>услуги для кошек и собак</li>
-                <li>гибкий график приема</li>
-                <li>безопасные и проверенные средства для ухода</li>
-                <li>индивидуальный уход, учитывая особенности</li>
-                <li>дружелюбная и уютная атмосфера в нашей студии</li>
-                <li>большой опыт работы с различными породами
-                    животных
-                </li>
-            </ul>
-        </div>
+            <img class="circle" src="/img/circle/VioletCircle.png"
+                 alt="VioletCircle">
+            <img class="circle-photo"
+                 src="/img/circle/advantagesCirclePhoto1.png"
+                 alt="advantagesCirclePhoto1">
 
-        <img class="circle" src="/img/circle/VioletCircle.png"
-             alt="VioletCircle">
-        <img class="circle-photo"
-             src="/img/circle/advantagesCirclePhoto1.png"
-             alt="advantagesCirclePhoto1">
+            <img class="circle circle2" src="/img/circle/PinkCircle.png"
+                 alt="PinkCircle">
+            <img class="circle-photo2"
+                 src="/img/circle/advantagesCirclePhoto2.png"
+                 alt="advantagesCirclePhoto2">
 
-        <img class="circle circle2" src="/img/circle/PinkCircle.png"
-             alt="PinkCircle">
-        <img class="circle-photo2"
-             src="/img/circle/advantagesCirclePhoto2.png"
-             alt="advantagesCirclePhoto2">
+        </section>
 
-    </section>
-
-    <section id="services" class="services container">
-        <div class="services__title">наши услуги</div>
-        <div class="services__blocks">
-            <div data-modal="trimming" class="services__item service1">
-                <div class="services__name">
-                    <p th:text="${category.get('Тримминг').name}"></p>
+        <section id="services" class="services container">
+            <div class="services__title">наши услуги</div>
+            <div class="services__blocks">
+                <div data-modal="trimming" class="services__item service1">
+                    <div class="services__name">
+                        <p th:text="${category.get('Тримминг').name}"></p>
+                    </div>
+                </div>
+                <div data-modal="washing" class="services__item service3">
+                    <div class="services__name">
+                        <p th:text="${category.get('Мойка + сушка').name}"></p>
+                    </div>
+                </div>
+                <div data-modal="molting" class="services__item service4">
+                    <div class="services__name">
+                        <p th:text="${category.get('Экспресс линька').name}"></p>
+                    </div>
+                </div>
+                <div data-modal="grooming" class="services__item service5">
+                    <div class="services__name">
+                        <p th:text="${category.get('Груминг').name}"></p>
+                    </div>
+                </div>
+                <div data-modal="hygiene" class="services__item service6">
+                    <div class="services__name">
+                        <p th:text="${category.get('Гигиена').name}"></p>
+                    </div>
+                </div>
+                <div data-modal="cats" class="services__item service7">
+                    <div class="services__name">
+                        <p th:text="${category.get('Комплекс для кошек').name}"></p>
+                    </div>
+                </div>
+                <div data-modal="care" class="services__item service8">
+                    <div class="services__name">
+                        <p th:text="${category.get('Уход').name}"></p>
+                    </div>
+                </div>
+                <div data-modal="exhibition"
+                     class="services__item service2">
+                    <div class="services__name">
+                        <p th:text="${category.get('Подготовка к выставке').name}"></p>
+                    </div>
                 </div>
             </div>
-            <div data-modal="washing" class="services__item service3">
-                <div class="services__name">
-                    <p th:text="${category.get('Мойка + сушка').name}"></p>
+        </section>
+
+        <section id="reviews" class="reviews container">
+            <div class="reviews__title">фото наших любимых клиентов</div>
+
+            <img class="circle" src="/img/circle/VioletCircle.png"
+                 alt="VioletCircle">
+            <img class="circle-photo" src="/img/reviews/reviewsImg1.png"
+                 alt="reviewsImg1">
+
+            <img class="circle circle1" src="/img/circle/PinkCircle.png"
+                 alt="PinkCircle">
+            <img class="circle-photo1" src="/img/reviews/reviewsImg2.png"
+                 alt="reviewsImg2">
+
+            <img class="circle circle2" src="/img/circle/BlueCircle.png"
+                 alt="BlueCircle">
+            <img class="circle-photo2" src="/img/reviews/reviewsImg3.png"
+                 alt="reviewsImg3">
+
+            <img class="circle circle3" src="/img/circle/PinkCircle.png"
+                 alt="PinkCircle">
+            <img class="circle-photo3" src="/img/reviews/reviewsImg4.png"
+                 alt="reviewsImg4">
+
+            <img class="circle circle4" src="/img/circle/PinkCircle.png"
+                 alt="PinkCircle">
+            <img class="circle-photo4" src="/img/reviews/reviewsImg5.png"
+                 alt="reviewsImg5">
+
+            <img class="circle circle5" src="/img/circle/PinkCircle.png"
+                 alt="PinkCircle">
+            <img class="circle-photo5" src="/img/reviews/reviewsImg6.png"
+                 alt="reviewsImg6">
+
+            <img class="circle circle6" src="/img/circle/VioletCircle.png"
+                 alt="VioletCircle">
+            <img class="circle-photo6" src="/img/reviews/reviewsImg7.png"
+                 alt="reviewsImg7">
+
+        </section>
+
+        <section id="record" class="record container">
+            <div class="record__text">
+                <div class="record__title">
+                    запишитесь к нам на услугу!
+                </div>
+                <div class="record__subtitle">
+                    для записи войдите в <a class="link" th:href="@{/auth/login}">личный
+                    кабинет</a>
+                    или <a class="link" th:href="@{/auth/register}">зарегистрируйтесь</a>
+                    <br> и заполните форму
+                </div>
+                <div class="record__info">
+                    <p>
+                    <address>Самара, ул.Ново-Садовая, 101</address>
+                    </p>
+                    <p>
+                        10:00 - 20:00 без выходных
+                    </p>
                 </div>
             </div>
-            <div data-modal="molting" class="services__item service4">
-                <div class="services__name">
-                    <p th:text="${category.get('Экспресс линька').name}"></p>
+            <div th:if="${user!=null}" class="record__form">
+                <form id="record-form" class="record-form" th:method="POST" th:action="@{/appointments/new}"
+                      th:object="${appointment}">
+                    <div class="record-form__row">
+                        <div class="record-form__block">
+                            <label for="category">Выберете категорию:</label>
+                            <select name="category" id="category">
+                                <option th:each="category : ${categories}" th:value="${category.ID}"
+                                        th:text="${category.name}">
+                                    Стрижка
+                                </option>
+                            </select>
+                        </div>
+                        <div class="record-form__block">
+                            <label for="service">Выберете услугу:</label>
+                            <select id="service" name="service.id" th:field="*{service}">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="record-form__row">
+                        <div class="record-form__block">
+                            <label for="date">Выберете дату:</label>
+                            <input type="date" name="date" id="date" th:field="*{date}" required>
+                        </div>
+                        <div class="record-form__block">
+                            <label for="time">Выберете время:</label>
+                            <input type="time" name="time" id="time" th:field="*{time}" required>
+                        </div>
+                    </div>
+
+                    <input class="btn-record" type="submit"
+                           value="записаться"/>
+                </form>
+            </div>
+        </section>
+
+        <div id="toast" class="toast">Запись прошла успешно!</div>
+
+        <footer class="footer container">
+            <div class="footer__link">
+                <div class="logo">
+                    <a class="link" th:href="@{/home}">дай лапу</a>
                 </div>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li><a class="link" th:href="@{/home#about}">о студии</a></li>
+                        <li><a class="link" th:href="@{/home#services}">услуги</a></li>
+                        <li><a class="link" th:href="@{/home#reviews}">отзывы</a></li>
+                        <li>
+                            <a th:if="${user != null}" class="link" th:href="@{/user/account/{login}(login = ${user.username})}">личный кабинет</a>
+                            <a th:if="${user == null}" class="link" th:href="@{/auth/login}">личный кабинет</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <div data-modal="grooming" class="services__item service5">
-                <div class="services__name">
-                    <p th:text="${category.get('Груминг').name}"></p>
-                </div>
+            <div class="footer__info">
+                <a class="link" href="#">Политика конфиденциальности</a>
+                <a class="link" href="https://vk.com/iriveses">Разработка сайта</a>
             </div>
-            <div data-modal="hygiene" class="services__item service6">
-                <div class="services__name">
-                    <p th:text="${category.get('Гигиена').name}"></p>
-                </div>
-            </div>
-            <div data-modal="cats" class="services__item service7">
-                <div class="services__name">
-                    <p th:text="${category.get('Комплекс для кошек').name}"></p>
-                </div>
-            </div>
-            <div data-modal="care" class="services__item service8">
-                <div class="services__name">
-                    <p th:text="${category.get('Уход').name}"></p>
-                </div>
-            </div>
-            <div data-modal="exhibition"
-                 class="services__item service2">
-                <div class="services__name">
-                    <p th:text="${category.get('Подготовка к выставке').name}"></p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </footer>
 
-    <section id="reviews" class="reviews container">
-        <div class="reviews__title">фото наших любимых клиентов</div>
-
-        <img class="circle" src="/img/circle/VioletCircle.png"
-             alt="VioletCircle">
-        <img class="circle-photo" src="/img/reviews/reviewsImg1.png"
-             alt="reviewsImg1">
-
-        <img class="circle circle1" src="/img/circle/PinkCircle.png"
-             alt="PinkCircle">
-        <img class="circle-photo1" src="/img/reviews/reviewsImg2.png"
-             alt="reviewsImg2">
-
-        <img class="circle circle2" src="/img/circle/BlueCircle.png"
-             alt="BlueCircle">
-        <img class="circle-photo2" src="/img/reviews/reviewsImg3.png"
-             alt="reviewsImg3">
-
-        <img class="circle circle3" src="/img/circle/PinkCircle.png"
-             alt="PinkCircle">
-        <img class="circle-photo3" src="/img/reviews/reviewsImg4.png"
-             alt="reviewsImg4">
-
-        <img class="circle circle4" src="/img/circle/PinkCircle.png"
-             alt="PinkCircle">
-        <img class="circle-photo4" src="/img/reviews/reviewsImg5.png"
-             alt="reviewsImg5">
-
-        <img class="circle circle5" src="/img/circle/PinkCircle.png"
-             alt="PinkCircle">
-        <img class="circle-photo5" src="/img/reviews/reviewsImg6.png"
-             alt="reviewsImg6">
-
-        <img class="circle circle6" src="/img/circle/VioletCircle.png"
-             alt="VioletCircle">
-        <img class="circle-photo6" src="/img/reviews/reviewsImg7.png"
-             alt="reviewsImg7">
-
-    </section>
-
-    <section id="record" class="record container">
-        <div class="record__text">
-            <div class="record__title">
-                запишитесь к нам на услугу!
-            </div>
-            <div class="record__subtitle">
-                для записи войдите в <a href="login.html">личный
-                кабинет</a>
-                или <a href="registration.html">зарегистрируйтесь</a>
-                <br> и заполните форму
-            </div>
-            <div class="record__info">
-                <p>
-                <address>Самара, ул.Ново-Садовая, 101</address>
+        <div class="overlay">
+            <div class="modal" id="trimming">
+                <div class="modal__close">&times;</div>
+                <p class="aboutCategory">
+                    Тримминг — это процедура прореживания шерсти,
+                    механическое удаление отмерших
+                    волосков у собак жесткошерстых пород. Тримминг собак
+                    позволяет сохранять шерсть
+                    яркой и блестящей, поддерживать правильную структуру
+                    волоса и аккуратный вид питомца,
+                    стимулировать рост новой шерсти.
                 </p>
-                <p>
-                    10:00 - 20:00 без выходных
-                </p>
-            </div>
-        </div>
-        <div class="record__form">
-            <form id="record-form" class="record-form" th:method="POST" th:action="@{/appointments/new}"
-                  th:object="${appointment}">
-                <div class="record-form__row">
-                    <div class="record-form__block">
-                        <label for="category">Выберете категорию:</label>
-                        <select name="category" id="category">
-                            <option th:each="category : ${categories}" th:value="${category.ID}"
-                                    th:text="${category.name}">
-                                Стрижка
-                            </option>
-                        </select>
+                <ul class="category-list" th:each="service : ${categoryServices.get('Тримминг')}">
+                    <div>
+                        <li th:text="${service.name}">Тримминг мелкие породы </li>
+                        <p th:text="${service.price} + '&#8381'">3000</p>
                     </div>
-                    <div class="record-form__block">
-                        <label for="service">Выберете услугу:</label>
-                        <select id="service" name="service.id" th:field="*{service}">
-                        </select>
-                    </div>
-                </div>
-                <div class="record-form__row">
-                    <div class="record-form__block">
-                        <label for="date">Выберете дату:</label>
-                        <input type="date" name="date" id="date" th:field="*{date}" required>
-                    </div>
-                    <div class="record-form__block">
-                        <label for="time">Выберете время:</label>
-                        <input type="time" name="time" id="time" th:field="*{time}" required>
-                    </div>
-                </div>
+                    <hr>
 
-                <input class="btn-record" type="submit"
-                       value="записаться"/>
-            </form>
-        </div>
-    </section>
-
-    <div id="toast" class="toast">Запись прошла успешно!</div>
-
-    <footer class="footer container">
-        <div class="footer__link">
-            <div class="logo">
-                <a href="test2.html">дай лапу</a>
-            </div>
-            <nav class="nav">
-                <ul class="nav__list">
-                    <li><a href="#about">о студии</a></li>
-                    <li><a href="#services">услуги</a></li>
-                    <li><a href="#reviews">отзывы</a></li>
-                    <li><a href="account.html">личный кабинет</a></li>
                 </ul>
-            </nav>
-        </div>
-        <div class="footer__info">
-            <a href="#">Политика конфиденциальности</a>
-            <a href="https://vk.com/iriveses">Разработка сайта</a>
-        </div>
-    </footer>
-
-    <div class="overlay">
-        <div class="modal" id="trimming">
-            <div class="modal__close">&times;</div>
-            <p class="aboutCategory">
-                Тримминг — это процедура прореживания шерсти,
-                механическое удаление отмерших
-                волосков у собак жесткошерстых пород. Тримминг собак
-                позволяет сохранять шерсть
-                яркой и блестящей, поддерживать правильную структуру
-                волоса и аккуратный вид питомца,
-                стимулировать рост новой шерсти.
-            </p>
-            <ul class="category-list" th:each="service : ${categoryServices.get('Тримминг')}">
-                <li th:text="${service.name}">Тримминг мелкие породы </li>
-                <p th:text="${service.price} + '&#8381'">3000</p>
-                <hr>
-                <!--<li>Тримминг средние породы <span>4000
-                        &#8381;</span></li>
-                <hr>
-                <li>Тримминг крупные породы <span>5000
-                        &#8381;</span></li>
-                <hr>
-                <li>Тримминг огромные породы <span>6000
-                        &#8381;</span></li>
-                <hr>-->
-            </ul>
-        </div>
-        <div class="modal" id="washing">
-            <div class="modal__close">&times;</div>
-            <p class="aboutCategory">
-                Мойка и сушка собак - это комплексная процедура,
-                направленная на поддержание гигиены
-                и внешнего вида Вашего питомца.
-            </p>
-            <ul class="category-list"th:each="service : ${categoryServices.get('Мойка + сушка')}">
-                <li th:text="${service.name}">Тримминг мелкие породы </li>
-                <p th:text="${service.price} + '&#8381'">3000</p>
-                <hr><!--
-                        <li>Мойка + сушка средние породы <span>2000
-                                &#8381;</span></li>
-                        <hr>
-                        <li>Мойка + сушка крупные породы <span>2500
-                                &#8381;</span></li>
-                        <hr>
-                        <li>Мойка + сушка огромные породы <span>3000
-                                &#8381;</span></li>
-                        <hr>-->
-            </ul>
-        </div>
-        <div class="modal" id="molting">
-            <div class="modal__close">&times;</div>
-            <p class="aboutCategory">
-                Экспресс-линька — это процесс, с помощью которого
-                удаляется линялая шерсть.
-                В данную услугу входит: гигиеническая чистка ушей,
-                стрижка когтей, вычесывание
-                шерсти с помощью специальных инстуметов, мытье
-                профессиональными средствами в три этапа, финальный
-                вычес шерсти.
-            </p>
-            <ul class="category-list" th:each="service : ${categoryServices.get('Экспресс линька')}">
-                <li th:text="${service.name}">Тримминг мелкие породы </li>
-                <p th:text="${service.price} + '&#8381'">3000</p>
-                <hr>
-            </ul>
-        </div>
-        <div class="modal" id="grooming">
-            <div class="modal__close">&times;</div>
-            <p class="aboutCategory">
-                Груминг - это комплекс мероприятий по уходу за
-                животными. Причем это
-                не только стрижка шерсти. Этот комплекс включает в себя
-                также обрезку
-                когтей, обработку глаз и ушей, профилактическую чистку
-                параанальных желез,
-                а также тримминг и экспресс-линьку в зависимости от вида
-                и породы животного.
-            </p>
-            <ul class="category-list" th:each="service : ${categoryServices.get('Груминг')}">
-                <li th:text="${service.name}">Тримминг мелкие породы </li>
-                <p th:text="${service.price} + '&#8381'">3000</p>
-                <hr>
-            </ul>
-        </div>
-        <div class="modal" id="hygiene">
-            <div class="modal__close">&times;</div>
-            <p class="aboutCategory">
-                Важность гигиенических процедур для собаки сложно
-                переоценить.
-                Они поддерживают ее здоровье, создают комфортные условия
-                жизни.
-                Гигиена и содержание собаки связаны с особенностями
-                породы,
-                длиной шерсти, образом жизни животного и другими
-                индивидуальными
-                особенностями.
-            </p>
-            <ul class="category-list" th:each="service : ${categoryServices.get('Гигиена')}">
-                <li th:text="${service.name}">Тримминг мелкие породы </li>
-                <p th:text="${service.price} + '&#8381'">3000</p>
-                <hr>
-            </ul>
-        </div>
-        <div class="modal" id="cats">
-            <div class="modal__close">&times;</div>
-            <p class="aboutCategory">
-                Купание кошки не входит в список обязательных
-                мероприятий, так
-                как большинство кошек боятся воды и не позволяют
-                качественно
-                провести эту процедуру.
-                В том случае, когда речь идет не о стрижке, а о
-                вычесывании
-                колтунов и линяющей шерсти, купание кошки становится
-                неотъемлемой частью данной процедуры, так как это
-                позволяет
-                распутать и расправить всю шерсть при сушке феном.
-            </p>
-            <ul class="category-list" th:each="service : ${categoryServices.get('Комплекс для кошек')}">
-                <li th:text="${service.name}">Тримминг мелкие породы </li>
-                <p th:text="${service.price} + '&#8381'">3000</p>
-                <hr>
-            </ul>
-        </div>
-        <div class="modal" id="care">
-            <div class="modal__close">&times;</div>
-            <p class="aboutCategory">
-                Груминг салоны предлагают своим клиентам большой выбор
-                различных процедур, благодаря которым можно восстановить
-                шерсть после агрессивных косметических средств для
-                выставки, вылечить дерматит, избавиться от зуда и
-                улучшить общее психологическое состояние питомца.
-            </p>
-            <ul class="category-list" th:each="service : ${categoryServices.get('Уход')}">
-                <li th:text="${service.name}">Тримминг мелкие породы </li>
-                <p th:text="${service.price} + '&#8381'">3000</p>
-                <hr>
-            </ul>
-        </div>
-        <div class="modal" id="exhibition">
-            <div class="modal__close">&times;</div>
-            <p class="aboutCategory">
-                Выставочный груминг требует более тщательного подхода,
-                включая определенные стандарты
-                внешнего вида, подчеркивающих породность и достоинства
-                животного. При проведении груминга
-                необходимо учитывать породу, тип шерсти и индивидуальные
-                особенности каждого питомца, чтобы достичь наилучших
-                результатов.
-                Ушные раковины должны быть чистыми, а когти укорочены.
-                Зубы должны быть без отложения зубного налета.
-            </p>
-            <ul class="category-list" th:each="service : ${categoryServices.get('Подготовка к выставке')}">
-                <li th:text="${service.name}">Тримминг мелкие породы </li>
-                <p th:text="${service.price} + '&#8381'">3000</p>
-                <hr>
-            </ul>
+            </div>
+            <div class="modal" id="washing">
+                <div class="modal__close">&times;</div>
+                <p class="aboutCategory">
+                    Мойка и сушка собак - это комплексная процедура,
+                    направленная на поддержание гигиены
+                    и внешнего вида Вашего питомца.
+                </p>
+                <ul class="category-list"th:each="service : ${categoryServices.get('Мойка + сушка')}">
+                <div>
+                    <li th:text="${service.name}">Тримминг мелкие породы </li>
+                    <p th:text="${service.price} + '&#8381'">3000</p>
+                </div>
+                    <hr>
+                </ul>
+            </div>
+            <div class="modal" id="molting">
+                <div class="modal__close">&times;</div>
+                <p class="aboutCategory">
+                    Экспресс-линька — это процесс, с помощью которого
+                    удаляется линялая шерсть.
+                    В данную услугу входит: гигиеническая чистка ушей,
+                    стрижка когтей, вычесывание
+                    шерсти с помощью специальных инстуметов, мытье
+                    профессиональными средствами в три этапа, финальный
+                    вычес шерсти.
+                </p>
+                <ul class="category-list" th:each="service : ${categoryServices.get('Экспресс линька')}">
+                <div>
+                    <li th:text="${service.name}">Тримминг мелкие породы </li>
+                    <p th:text="${service.price} + '&#8381'">3000</p>
+                </div>
+                    <hr>
+                </ul>
+            </div>
+            <div class="modal" id="grooming">
+                <div class="modal__close">&times;</div>
+                <p class="aboutCategory">
+                    Груминг - это комплекс мероприятий по уходу за
+                    животными. Причем это
+                    не только стрижка шерсти. Этот комплекс включает в себя
+                    также обрезку
+                    когтей, обработку глаз и ушей, профилактическую чистку
+                    параанальных желез,
+                    а также тримминг и экспресс-линьку в зависимости от вида
+                    и породы животного.
+                </p>
+                <ul class="category-list" th:each="service : ${categoryServices.get('Груминг')}">
+                    <div>
+                        <li th:text="${service.name}">Тримминг мелкие породы </li>
+                        <p th:text="${service.price} + '&#8381'">3000</p>
+                    </div>
+                    <hr>
+                </ul>
+            </div>
+            <div class="modal" id="hygiene">
+                <div class="modal__close">&times;</div>
+                <p class="aboutCategory">
+                    Важность гигиенических процедур для собаки сложно
+                    переоценить.
+                    Они поддерживают ее здоровье, создают комфортные условия
+                    жизни.
+                    Гигиена и содержание собаки связаны с особенностями
+                    породы,
+                    длиной шерсти, образом жизни животного и другими
+                    индивидуальными
+                    особенностями.
+                </p>
+                <ul class="category-list" th:each="service : ${categoryServices.get('Гигиена')}">
+                    <div>
+                        <li th:text="${service.name}">Тримминг мелкие породы </li>
+                        <p th:text="${service.price} + '&#8381'">3000</p>
+                    </div>
+                    <hr>
+                </ul>
+            </div>
+            <div class="modal" id="cats">
+                <div class="modal__close">&times;</div>
+                <p class="aboutCategory">
+                    Купание кошки не входит в список обязательных
+                    мероприятий, так
+                    как большинство кошек боятся воды и не позволяют
+                    качественно
+                    провести эту процедуру.
+                    В том случае, когда речь идет не о стрижке, а о
+                    вычесывании
+                    колтунов и линяющей шерсти, купание кошки становится
+                    неотъемлемой частью данной процедуры, так как это
+                    позволяет
+                    распутать и расправить всю шерсть при сушке феном.
+                </p>
+                <ul class="category-list" th:each="service : ${categoryServices.get('Комплекс для кошек')}">
+                    <div>
+                        <li th:text="${service.name}">Тримминг мелкие породы </li>
+                        <p th:text="${service.price} + '&#8381'">3000</p>
+                    </div>
+                    <hr>
+                </ul>
+            </div>
+            <div class="modal" id="care">
+                <div class="modal__close">&times;</div>
+                <p class="aboutCategory">
+                    Груминг салоны предлагают своим клиентам большой выбор
+                    различных процедур, благодаря которым можно восстановить
+                    шерсть после агрессивных косметических средств для
+                    выставки, вылечить дерматит, избавиться от зуда и
+                    улучшить общее психологическое состояние питомца.
+                </p>
+                <ul class="category-list" th:each="service : ${categoryServices.get('Уход')}">
+                    <div>
+                        <li th:text="${service.name}">Тримминг мелкие породы </li>
+                        <p th:text="${service.price} + '&#8381'">3000</p>
+                    </div>
+                    <hr>
+                </ul>
+            </div>
+            <div class="modal" id="exhibition">
+                <div class="modal__close">&times;</div>
+                <p class="aboutCategory">
+                    Выставочный груминг требует более тщательного подхода,
+                    включая определенные стандарты
+                    внешнего вида, подчеркивающих породность и достоинства
+                    животного. При проведении груминга
+                    необходимо учитывать породу, тип шерсти и индивидуальные
+                    особенности каждого питомца, чтобы достичь наилучших
+                    результатов.
+                    Ушные раковины должны быть чистыми, а когти укорочены.
+                    Зубы должны быть без отложения зубного налета.
+                </p>
+                <ul class="category-list" th:each="service : ${categoryServices.get('Подготовка к выставке')}">
+                    <div>
+                        <li th:text="${service.name}">Тримминг мелкие породы </li>
+                        <p th:text="${service.price} + '&#8381'">3000</p>
+                    </div>
+                    <hr>
+                </ul>
+            </div>
         </div>
     </div>
-
-</div>
-
-<script src="/js/jquery-3.7.1.js"></script>
-<script src="/js/script.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#category').change(function () {
-            var categoryId = $(this).val();
-            $.ajax({
-                url: '/services',
-                type: 'get',
-                data: {categoryId: categoryId},
-                success: function (services) {
-                    $('#service').empty();
-                    $.each(services, function (key, service) {
-                        $('#service').append($('<option>', {
-                            value: service.id,
-                            text: service.name
-                        }));
-                    });
-                }
+    <script type="text/javascript" src="/js/jquery-3.7.1.js"></script>
+    <!-- подключение библиотеки jquery -->
+    <script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
+    <!-- подлючение самого плагина на маски ввода -->
+    <script src="/js/script.js"></script>
+    <!-- подлючение своего скрипта -->
+    <script>
+    <!-- отображение категории и её услуг в форме записи        -->
+        $(document).ready(function () {
+            $('#category').change(function () {
+                var categoryId = $(this).val();
+                $.ajax({
+                    url: '/services',
+                    type: 'get',
+                    data: {categoryId: categoryId},
+                    success: function (services) {
+                        $('#service').empty();
+                        $.each(services, function (key, service) {
+                            $('#service').append($('<option>', {
+                                value: service.id,
+                                text: service.name
+                            }));
+                        });
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+    <script>
+        function showToast() {
+            var toast = document.getElementById("toast");
+            toast.className = "toast show";
+            setTimeout(function() {
+                toast.className = toast.className.replace("show", "");
+            }, 15000);
+        }
 
-<script>
-    function showToast() {
-        var toast = document.getElementById("toast");
-        toast.className = "toast show";
-        setTimeout(function() {
-            toast.className = toast.className.replace("show", "");
-        }, 15000);
-    }
-</script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
         $('form').submit(function(event) {
             event.preventDefault();
             $.ajax({
@@ -488,8 +483,6 @@
                 }
             });
         });
-    });
-</script>
-
+    </script>
 </body>
 </html>

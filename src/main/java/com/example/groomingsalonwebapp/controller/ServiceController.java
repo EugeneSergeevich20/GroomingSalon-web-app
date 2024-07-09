@@ -82,7 +82,9 @@ public class ServiceController {
         Category category = new Category();
         category.setID(categoryId);
 
-        return service.findByCategory(category);
+        List<Service> services = service.findByCategory(category);
+
+        return services;
     }
 
 }

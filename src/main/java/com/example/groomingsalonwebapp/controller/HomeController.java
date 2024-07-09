@@ -16,13 +16,4 @@ public class HomeController {
         this.userService = userService;
     }
 
-    /*@GetMapping("/home")
-    public String homePage(Model model){
-
-        User user = userService.getAuthUser();
-        model.addAttribute("user", user);
-
-        return "index";
-    }*/
-
 }

@@ -1,5 +1,6 @@
 package com.example.groomingsalonwebapp.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,6 +32,7 @@ public class Service {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "service")
     private List<Appointment> services;
 

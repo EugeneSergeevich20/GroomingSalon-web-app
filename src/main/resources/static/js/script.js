@@ -1,3 +1,4 @@
+$(document).ready(function() {
 
     // для главной страницы
     $('[data-modal=record]').on('click', function() {
@@ -36,8 +37,70 @@
     });
 
 
-// личный кабинет
-// кнопка "изменить данные"
-$('[data-modal=btnEditDataUser]').on('click', function() {
-    $('.overlay, #editDataUser').fadeIn('slow');
+    // личный кабинет
+    // кнопка "изменить данные"
+    $('[data-modal=btnEditDataUser]').on('click', function() {
+        $('.overlay, #editDataUser').fadeIn('slow');
+    });
+
+    let pass = document.getElementById('pass');
+    let pass_rep = document.getElementById('repPass');
+    let error = document.getElementById('errorBlock');
+    let btnRegistration = document.getElementById('btn-registration');
+    repPass.addEventListener('input', checkPasswords);
+    function checkPasswords() {
+        if (pass.value !== repPass.value){
+            error.textContent = 'Пароли не совпадают';
+        }
+        else {
+            error.textContent = '';
+        }
+    }
+
+
+    /*function showToast() {
+        var toast = document.getElementById("toast");
+        toast.className = "toast show";
+        setTimeout(function() {
+            toast.className = toast.className.replace("show", "");
+        }, 15000);
+    }
+
+    $('form').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function(response) {
+                showToast();
+                setTimeout(function() {
+                    window.location.href = "/home";
+                }, 1500);
+            },
+            error: function(response) {
+                alert("Произошла ошибка при записи на услугу.");
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#category').change(function () {
+            var categoryId = $(this).val();
+            $.ajax({
+                url: '/services',
+                type: 'get',
+                data: {categoryId: categoryId},
+                success: function (services) {
+                    $('#service').empty();
+                    $.each(services, function (key, service) {
+                        $('#service').append($('<option>', {
+                            value: service.id,
+                            text: service.name
+                        }));
+                    });
+                }
+            });
+        });
+    });*/
 });
